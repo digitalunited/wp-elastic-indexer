@@ -1,0 +1,32 @@
+{
+	"name": "digitalunited/wp-elastic-indexer",
+	"description": "Indexer example using WP Elastic API.",
+	"keywords": ["wordpress", "plugin"],
+	"homepage": "https://github.com/digitalunited/wp-elastic-api",
+	"version": "0.1",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Mikael Engström",
+			"email": "mikael.engstrom@careofhaus.se",
+			"homepage": "http://www.careofhaus.io"
+		},
+		{
+			"name": "Andreas Ek",
+			"email": "andreas.ek@careofhaus.se",
+			"homepage": "http://www.careofhaus.io"
+		}
+	],
+	"type": "wordpress-plugin",
+	"autoload"   : {
+		"psr-4": {
+			"DigitalUnited\\WPElasticAPI\\": "src/WPElasticIndexer"
+		}
+	},
+	"repositories": {
+		"packagist": { "url": "https://packagist.org", "type": "composer" }
+	},
+	"require": {
+		"nategood/httpful": "0.2.*"
+	}
+}
