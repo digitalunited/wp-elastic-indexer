@@ -15,7 +15,13 @@ add_action( 'save_post', 'wp_elastic_indexer_save_post' );
 
 function wp_elastic_indexer_save_post( $post_id ) {
 
-    $data = get_object_vars( get_post( $post_id ) );
+    $data = array();
+
+    $post = get_object_vars( get_post( $post_id ) );
+    $data = array_merge( $data, $post );
+
+    $meta = get_object_vars( get_post_meta( $post_id ) );
+    $data = array_merge( $data, $meta );
 
     $body = array(
         'post_type' => 'post',
@@ -23,6 +29,7 @@ function wp_elastic_indexer_save_post( $post_id ) {
         'data' => $data
     );
 
-    \Httpful\Request::post( 'http://wpelastic.dev/app/plugins/wp-elastic-api/posts' )->body( json_encode( $body ) )->send();
+    $api_url = 'http://wpelastic.dev/app/plugins/wp-elastic-api';
+    \Httpful\Request::post( $api_url . '/posts' )->body( json_encode( $body ) )->send();
 
 }
